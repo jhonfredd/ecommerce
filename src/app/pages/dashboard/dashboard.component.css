@@ -1,0 +1,9 @@
+.outlined-text {
+    color: white; /* Cambia esto al color de relleno deseado */
+    text-shadow: 
+      -1px -1px 0 #000,  /* Negro */
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
+  

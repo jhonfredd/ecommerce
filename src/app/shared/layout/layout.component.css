@@ -1,0 +1,11 @@
+.navbar-brand-logo {
+  width: 60px;
+  height: auto;
+}
+.dropdown-menu-1 {
+  position: fixed !important;
+  top: 70px !important; /* Ajusta esto según la altura de tu barra de navegación */
+  left: 80% !important ;
+  z-index: 1000 !important; /* Asegúrate de que esté por encima de otros elementos si es necesario */
+}
+  

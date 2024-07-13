@@ -1,0 +1,110 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">Productos</h5>
+    </div>
+    <div class="card-header">
+      @if(formulario == 0){
+        <div class="mb-3">
+          <div class="text-end" style="margin-right: 4.5rem !important;">
+            <button class="btn btn-success" (click)="validarFormulario(1)">Crear Productos <i class="fa-solid fa-plus"></i></button>
+          </div>
+        </div>
+        <div class="table table-responsive">
+          <table class="table table-striped table-bordered table-sm text-center rounded-2">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Sub Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(item of productos; track item._id) {
+                <tr>
+                  <td>{{ $index+1 }}</td>
+                  <td>{{ item.title }}</td>
+                  <td>{{ item.sub_title }}</td>
+                  <td>{{ item.description }}</td>
+                  <td>{{ item.price | currency}}</td>
+                  <td>
+                    @if(item.status == 1){
+                      <span class="badge-green">Activo</span>
+                      }
+                    @else{
+                      <span class="badge-red">Inactivo</span>
+                      }
+                  </td>
+                  <td class="d-flex justify-content-center">
+                    <div style="margin-right: 20px;">
+                      <!-- boton para actualizar al component envia los datos -->
+                      <button type="button" class="btn btn-primary" (click)="update(item._id,item.title,item.sub_title,item.description,item.price,item.status)">
+                        <i class="fa-solid fa-pen-to-square" ></i>
+                      </button>
+                    </div>
+                    <div>
+                      @if(item.status == 1){
+                        <button type="button" class="btn btn-danger" (click)="cambiarEstado(item._id,0)">
+                          <i class="fa-solid fa-trash"></i>
+                        </button>
+                        }
+                      @else{
+                        <button type="button" class="btn btn-success" (click)="cambiarEstado(item._id,1)">
+                          <i class="fa-solid fa-circle-check"></i>
+                        </button>
+                        }
+                    </div>
+                  </td>
+                </tr>
+                } @empty {
+                <tr>
+                  <td colspan="4">Sin resultados</td>
+                </tr>
+                }
+            </tbody>
+          </table>
+        </div>
+        }
+      @else if(formulario === 1 || formulario === 2) {
+        <div class="form-control">
+          <form [formGroup]="form" class="row g-3" (submit)="obSubmit()">
+            <div class="col-6 mb-3">
+             <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" formControlName="title" placeholder="Title">
+              </div>
+             <div class="mb-3">
+                <label for="sub_title" class="form-label">Sub title</label>
+                <input type="text" class="form-control" formControlName="sub_title" placeholder="Sub title">
+              </div>
+            </div>
+            <div class="col-6 mb-3">
+             <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" formControlName="description" placeholder="Description">
+              </div>
+             <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" formControlName="price" placeholder="Price $">
+              </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-center">
+              <div style="margin-right: 10px;">
+                @if(formulario === 1){
+                  <button type="submit" class="btn btn-success" [disabled]="form.invalid">Registrar</button>
+                  }
+                @else{
+                  <button type="submit" class="btn btn-info" [disabled]="form.invalid">Actualizar</button>
+                }
+              </div>
+              <button type="button" class="btn btn-danger" (click)="validarFormulario(0)">Volver</button>
+            </div>
+          </form>
+        </div>
+        }
+    </div>
+  </div>
+  

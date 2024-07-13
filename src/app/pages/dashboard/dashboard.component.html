@@ -1,0 +1,23 @@
+<div class="container-fluid row col-12">
+  @for (card of dasboard; track card._id) {
+    <!-- <div class="card ms-3 mb-3" [innerHTML]="card.card"  style="width: 18rem;"></div> //inserta la card del otro lado  -->
+    <!-- {{card |json }} -->
+    <div class="card ms-3 mb-3" style="width: 18rem;">
+      <img src="../../../assets/images/Logo.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title text-center fw-bold">{{card.title}}</h5>
+        <div class="about text-justify">
+            <h4 class="card-text">{{card.sub_title | slice : 0 : 28}}</h4>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{card.description}}</h6>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="card-text text-success fw-bold outlined-text mb-0">Price:</p>
+              <p class="card-text text-warning fw-bold outlined-text mb-0">{{card.price | currency:' ':'$':'0.0-1'}}</p>           
+            </div>                       
+        </div>
+        <div class="d-flex justify-content-center">
+          <a href="#" class="btn btn-success">Comprar</a>
+        </div>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center">
+    <div class="card" style="width: 36rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center">Register</h5>
+            <form [formGroup]="form" (submit)="onSubmit()">
+                <div class="mb-3 row">
+                    <label for="first_name" class="col-sm-3 col-form-label">First Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="first_name" formControlName="first_name" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="last_name" class="col-sm-3 col-form-label">Last Name</label>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control" id="last_name" formControlName="last_name" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="telephone" class="col-sm-3 col-form-label">Telephone</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" id="telephone" formControlName="telephone" maxlength="10" minlength="0"  placeholder="Telephone">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="email" class="col-sm-3 col-form-label">Email Address</label>
+                    <div class="col-sm-8">
+                        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email Address">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="password" class="col-sm-3 col-form-label">Password</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+                        </div>
+                    </div>
+                </div>                
+                <div class="mb-3 row">
+                    <label for="password2" class="col-sm-3 col-form-label">Confirm Password</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password2" formControlName="password2" placeholder="Confirm Password">
+                            <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility('password,password2','password2Icon')">
+                                <i id="password2Icon" class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @if(this.form.errors?.['passwordMismatch'] === true){
+                    <div class="alert alert-danger text-center" role="alert">
+                        Las contraseñas no coinciden.
+                    </div>
+                }                
+                <div class="col-auto d-flex justify-content-center">
+                  <button type="submit" class="btn btn-success mb-3" [disabled]="form.invalid">Register</button>
+                </div>
+            </form>               
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,101 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title text-center">Cambiar Contraseña</h5>
+    </div>
+    <div class="card-header">
+        <div class="form-control">
+            <form [formGroup]="form" class="row g-3" (submit)="obSubmit()">
+                <div class="col-6 mb-3">
+                    <div class="mb-3">
+                        <label for="nombres" class="col-sm-3 col-form-label">Nombres</label>
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nombres" formControlName="nombres" placeholder="Nombres" >
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="mb-3">
+                        <label for="usuario" class="col-sm-3 col-form-label">Usuario</label>
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="usuario" formControlName="usuario" placeholder="Usuario" >
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="mb-3">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="mb-3">
+                        <label for="apellidos" class="col-sm-3 col-form-label">Apellidos</label>
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="apellidos" formControlName="apellidos" placeholder="Apellidos" >
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="email" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email" >
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="mb-3">
+                        <label for="password2" class="col-sm-3 col-form-label">Confirm Password</label>
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password2" formControlName="password2" placeholder="Confirm Password">
+                                <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility('password,password2','password2Icon')">
+                                    <i id="password2Icon" class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-center">
+                    <ul>
+                        <li [ngClass]="{ 'text-success': !form.errors?.['verify_password'], 'text-danger': form.errors?.['verify_password'] }">
+                            <strong>Las contraseñas no coinciden</strong>.
+                        </li>
+                        <li [ngClass]="{ 'text-success': !form.errors?.['minLength'], 'text-danger': form.errors?.['minLength'] }">
+                            Longitud: La contraseña debe tener al menos <strong>14 caracteres</strong>.
+                        </li>
+                        <li [class.text-success]="!form.errors?.['lowercase'] && !this.form.errors?.['uppercase'] && !this.form.errors?.['number'] && !this.form.errors?.['special']" 
+                            [class.text-danger]="form.errors?.['lowercase'] || this.form.errors?.['uppercase'] || this.form.errors?.['number'] || this.form.errors?.['special']">
+                            <strong>Requisitos de Caracteres:</strong>
+                            <ul>
+                                <li [ngClass]="{ 'text-success': !form.errors?.['lowercase'], 'text-danger': form.errors?.['lowercase'] }">
+                                    Al menos <strong>una letra minúscula</strong> (a-z).
+                                </li>
+                                <li [ngClass]="{ 'text-success': !form.errors?.['uppercase'], 'text-danger': form.errors?.['uppercase'] }">
+                                    Al menos <strong>una letra mayúscula</strong> (A-Z).
+                                </li>
+                                <li [ngClass]="{ 'text-success': !form.errors?.['number'], 'text-danger': form.errors?.['number'] }">
+                                    Al menos <strong>un número</strong> (0-9).
+                                </li>
+                                <li [ngClass]="{ 'text-success': !form.errors?.['special'], 'text-danger': form.errors?.['special'] }">
+                                    Al menos <strong>un carácter especial</strong> {{ message }}.
+                                </li>
+                            </ul>
+                        </li>
+                        <li [ngClass]="{ 'text-success': !form.errors?.['sequence'], 'text-danger': form.errors?.['sequence'] }">
+                            <strong>No secuencias:</strong> La contraseña <strong>no debe contener secuencias.</strong>
+                        </li>
+                    </ul>
+                  </div>
+                <div class="mt-4 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-info" [disabled]="form.invalid">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>
