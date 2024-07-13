@@ -2,11 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
+
+## Requirements to be able to run Angular and api
+Have installed : Node js 20.15.1 If you don't know which version run this command in the terminal: command node-v
+
+
 ## Development server
-
-## Node js 20.15.1
-
-command node-v
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
